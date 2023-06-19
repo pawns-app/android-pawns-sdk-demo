@@ -1,3 +1,5 @@
+![GitHub Latest Release)](https://img.shields.io/github/v/release/IPRoyal/android-pawns-sdk-demo?logo=github&style=flat&color=5324CE)
+
 ![alt text](https://pawns.app/wp-content/uploads/2022/12/pawns-app-dark.svg)
 
 # Pawns SDK  #
