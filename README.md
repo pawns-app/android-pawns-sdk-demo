@@ -7,14 +7,14 @@
 Contact our representative to get terms and conditions and collect all information needed.
 
 ### Content ###
-- [Information needed](#Infomration needed)
-- [Installation](#Installation)
-- [Setup](#Setup)
-- [How to use](#How to use)
-- [Increase SDK service run time](#Increase SDK service run time)
-    - [Battery optimisation settings](#Battery optimisation settings)
-    - [Launch on boot complete](#Launch on boot complete)
-- [License](#License)
+- [Information needed](#information-needed)
+- [Installation](#installation)
+- [Setup](#setup)
+- [How to use](#how-to-use)
+- [Increase SDK service run time](#increase-sdk-service-run-time)
+  - [Battery optimisation settings](#battery-optimisation-settings)
+  - [Launch on boot complete](#launch-on-boot-complete)
+- [License](#license)
 
 ### Summary ###
 
