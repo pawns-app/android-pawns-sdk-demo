@@ -2,7 +2,7 @@
 
 # Pawns SDK  #
 -------------
-## An internet sharing library for Android.  ##
+## An internet sharing library for Android  ##
 
 Contact our representative to get terms and conditions and collect all information needed.
 
