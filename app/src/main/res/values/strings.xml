@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PawnsSdkDemo</string>
+    <string name="service_name">MyApp Internet Sharing</string>
+    <string name="service_body">This service prevents MyApp from showing advertisements</string>
+</resources>
