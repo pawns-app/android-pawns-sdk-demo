@@ -31,10 +31,7 @@ Contact our representative to get terms and conditions and collect all informati
 Add jitpack repository to your project level build.gradle
 ````
 allprojects {
-    maven {
-        url 'https://jitpack.io'
-        credentials { username 'jp_e49n19d4qo4q6futud00uhqesp' }
-    }
+    maven { url 'https://jitpack.io' }
 }
 ````
 
@@ -128,6 +125,11 @@ We provide with listener register/unregister methods
         super.onPonDestroyause()
         Pawns.instance.unregisterListener()
     }  
+````
+
+The current service state can also be read through its value property
+````
+    val lastKnownState = Pawns.instance.serviceState.value
 ````
 
 ### Increase SDK service run time ###
