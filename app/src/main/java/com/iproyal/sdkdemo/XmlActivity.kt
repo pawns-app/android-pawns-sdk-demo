@@ -3,17 +3,10 @@ package com.iproyal.sdkdemo
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.lifecycle.MutableLiveData
 import com.iproyal.sdk.public.dto.ServiceState
 import com.iproyal.sdk.public.listener.PawnsServiceListener
 import com.iproyal.sdk.public.sdk.Pawns
-import com.iproyal.sdkdemo.ui.theme.PawnsSdkDemoTheme
-import kotlinx.coroutines.Dispatchers
 
 class XmlActivity : AppCompatActivity(), PawnsServiceListener {
 

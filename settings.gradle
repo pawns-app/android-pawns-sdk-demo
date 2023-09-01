@@ -10,10 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven {
-            url 'https://jitpack.io'
-            credentials { username 'jp_e49n19d4qo4q6futud00uhqesp' }
-        }
+        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "PawnsSdkDemo"

@@ -13,6 +13,9 @@ Contact our representative to get terms and conditions and collect all informati
 - [Installation](#installation)
 - [Setup](#setup)
 - [How to use](#how-to-use)
+- [Service types](#service-types)
+- [Main Functionality](#main-functionality)
+- [Foreground service](#foreground-service)
 - [Increase SDK service run time](#increase-sdk-service-run-time)
   - [Battery optimisation settings](#battery-optimisation-settings)
   - [Launch on boot complete](#launch-on-boot-complete)
@@ -20,7 +23,7 @@ Contact our representative to get terms and conditions and collect all informati
 
 ### Summary ###
 
-* Min Sdk 23
+* Min Sdk 21
 
 ### Information needed ###
 
@@ -42,30 +45,17 @@ implementation'com.github.IPRoyal:android-pawns-sdk:x.y.z'
 
 ## Setup ##
 
-Setup internet sharing service notification channel name (displayed to users in application settings under notification section). Default value is "Sharing service".
-
-````
-   <application
-   ...
-
-        <meta-data
-            android:name="com.iproyal.sdk.pawns_service_channel_name"
-            android:value="My Internet Sharing" />
-
-    </application>
-````
-
 Make a few updates in the onCreate method of your app's Application class
 
 Use Pawns.Builder to build and setup SDK for later use in your application. It is a mandatory to provide your API key as it is used to identify your developer account when Internet Sharing service is running.
-Optionally, you can provide service configuration to modify what exactly foreground service notification will display to user, when sharing service is launched.
+By default SDK will start service as **FOREGROUND** service. Optionally, you can provide service configuration to modify what exactly foreground service notification will display to user, when sharing service is launched.
 **TIP** *It is recommended to setup service configuration, because it acts as an explanation to the user why your application is running foreground service.*
 
 Setup code example:
 
     override fun onCreate() {
         super.onCreate()
-        
+
         Pawns.Builder(this)
             .apiKey("Your api key here")
             .serviceConfig(
@@ -75,12 +65,24 @@ Setup code example:
                     smallIcon = R.drawable.ic_demo_icon
                 )
             )
+            .serviceType(ServiceType.FOREGROUND)
             .build()
     }  
 
 
 
 ### How to use ####
+
+#### Service types ####
+
+There are currently two types of service you can run:
+* Background service does not require to display notification, so it is less intrusive to the user. Downside is that application must be 
+active and running, otherwise it will get terminated. Putting phone to sleep will stop service as well.
+* Foreground service must display a notification as this service can run independently from application. Meaning that it will continue to run even when
+application is not active and not running. If application is closed there are still some specific cases when service will get terminated after a while, but 
+we will provide tips how to extend time of running later on.
+
+#### Main Functionality ####
 
 Our SDK provides 3 main functionalities
 
@@ -94,7 +96,7 @@ Pawns.instance.startSharing(context)
 ````
 #### Stopping service ####
 ````
-Pawns.instance.stopSharing(this)
+Pawns.instance.stopSharing(context)
 ````
 #### Observing state of service ####
 
@@ -118,11 +120,11 @@ We provide with listener register/unregister methods
 ````
     override fun onCreate() {
         super.onCreate()
-        Pawns.instance.registerListener(this)
+        Pawns.instance.registerListener(pawnsServiceListener)
     }
 
     override fun onDestroy() {
-        super.onPonDestroyause()
+        super.onDestroy()
         Pawns.instance.unregisterListener()
     }  
 ````
@@ -130,6 +132,20 @@ We provide with listener register/unregister methods
 The current service state can also be read through its value property
 ````
     val lastKnownState = Pawns.instance.serviceState.value
+````
+## Foreground service ##
+
+Setup internet sharing service notification channel name (displayed to users in application settings under notification section). Default value is "Sharing service".
+
+````
+   <application
+   ...
+
+        <meta-data
+            android:name="com.iproyal.sdk.pawns_service_channel_name"
+            android:value="My Internet Sharing" />
+
+    </application>
 ````
 
 ### Increase SDK service run time ###
