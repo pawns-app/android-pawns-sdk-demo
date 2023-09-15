@@ -28,7 +28,7 @@ class ComposeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PawnsSdkDemoTheme {
-                val state = Pawns.instance.serviceState.collectAsState(Dispatchers.Main.immediate)
+                val state = Pawns.getInstance().getServiceState().collectAsState(Dispatchers.Main.immediate)
                 DemoScreen(state)
             }
         }
@@ -60,11 +60,11 @@ private fun DemoScreen(state: State<ServiceState>) {
                 )
                 val context = LocalContext.current
                 Box(modifier = Modifier.height(20.dp))
-                Button(onClick = { Pawns.instance.startSharing(context) }) {
+                Button(onClick = { Pawns.getInstance().startSharing(context) }) {
                     Text("START")
                 }
                 Box(modifier = Modifier.height(10.dp))
-                Button(onClick = { Pawns.instance.stopSharing(context) }) {
+                Button(onClick = { Pawns.getInstance().stopSharing(context) }) {
                     Text("STOP")
                 }
             }

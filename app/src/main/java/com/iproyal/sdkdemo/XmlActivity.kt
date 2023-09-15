@@ -17,21 +17,21 @@ class XmlActivity : AppCompatActivity(), PawnsServiceListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_xml)
-        Pawns.instance.registerListener(this)
+        Pawns.getInstance().registerListener(this)
         infoText = findViewById(R.id.info_text)
         startButton = findViewById(R.id.start_button)
         stopButton = findViewById(R.id.stop_button)
 
         startButton.setOnClickListener {
-            Pawns.instance.startSharing(this)
+            Pawns.getInstance().startSharing(this)
         }
         stopButton.setOnClickListener {
-            Pawns.instance.stopSharing(this)
+            Pawns.getInstance().stopSharing(this)
         }
     }
 
     override fun onDestroy() {
-        Pawns.instance.unregisterListener()
+        Pawns.getInstance().unregisterListener()
         super.onDestroy()
     }
 

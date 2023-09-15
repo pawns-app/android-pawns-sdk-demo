@@ -92,11 +92,11 @@ Our SDK provides 3 main functionalities
 
 #### Starting service ####
 ````
-Pawns.instance.startSharing(context)
+Pawns.getInstance().startSharing(context)
 ````
 #### Stopping service ####
 ````
-Pawns.instance.stopSharing(context)
+Pawns.getInstance().stopSharing(context)
 ````
 #### Observing state of service ####
 
@@ -106,7 +106,7 @@ Depending on your technology stack this may vary, but we covered two main use ca
 
 Collecting service state for composable components is very similar to collecting state from viewModel. Pawns instance exposes coroutines StateFlow serviceState, which can be observed easily.
 ````
-val state = Pawns.instance.serviceState.collectAsState(Dispatchers.Main.immediate)
+val state = Pawns.getInstance().getServiceState().collectAsState(Dispatchers.Main.immediate)
 ````
 #### Xml and Listeners ####
 
@@ -120,18 +120,18 @@ We provide with listener register/unregister methods
 ````
     override fun onCreate() {
         super.onCreate()
-        Pawns.instance.registerListener(pawnsServiceListener)
+        Pawns.getInstance().registerListener(pawnsServiceListener)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Pawns.instance.unregisterListener()
+        Pawns.getInstance().unregisterListener()
     }  
 ````
 
 The current service state can also be read through its value property
 ````
-    val lastKnownState = Pawns.instance.serviceState.value
+    val lastKnownState = Pawns.getInstance().getServiceStateSnapshot()
 ````
 ## Foreground service ##
 

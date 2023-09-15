@@ -9,7 +9,7 @@ class BootStartupReceiver: BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
         if (context != null && intent?.action.equals(Intent.ACTION_BOOT_COMPLETED, true)) {
-            Pawns.instance.startSharing(context)
+            Pawns.getInstance().startSharing(context)
         }
     }
 
