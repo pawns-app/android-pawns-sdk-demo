@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.iproyal.sdk.public.dto.ServiceState
-import com.iproyal.sdk.public.sdk.Pawns
+import com.iproyal.sdk.common.dto.ServiceState
+import com.iproyal.sdk.common.sdk.Pawns
 import com.iproyal.sdkdemo.ui.theme.PawnsSdkDemoTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

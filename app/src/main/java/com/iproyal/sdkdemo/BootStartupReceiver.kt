@@ -3,7 +3,7 @@ package com.iproyal.sdkdemo
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.iproyal.sdk.public.sdk.Pawns
+import com.iproyal.sdk.common.sdk.Pawns
 
 class BootStartupReceiver: BroadcastReceiver() {
 

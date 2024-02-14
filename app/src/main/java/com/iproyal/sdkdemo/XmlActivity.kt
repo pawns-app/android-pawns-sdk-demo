@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.iproyal.sdk.public.dto.ServiceState
-import com.iproyal.sdk.public.listener.PawnsServiceListener
-import com.iproyal.sdk.public.sdk.Pawns
+import com.iproyal.sdk.common.dto.ServiceState
+import com.iproyal.sdk.common.listener.PawnsServiceListener
+import com.iproyal.sdk.common.sdk.Pawns
 
 class XmlActivity : AppCompatActivity(), PawnsServiceListener {
 
