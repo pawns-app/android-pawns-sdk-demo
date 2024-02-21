@@ -53,10 +53,13 @@ By default SDK will start service as **FOREGROUND** service. Optionally, you can
 
 Setup code example:
 
+**Kotlin**
+
+````
     override fun onCreate() {
         super.onCreate()
 
-        Pawns.Builder(this)
+        Pawns.Builder(context)
             .apiKey("Your api key here")
             .serviceConfig(
                 ServiceConfig(
@@ -68,8 +71,29 @@ Setup code example:
             .serviceType(ServiceType.FOREGROUND)
             .build()
     }  
+````
 
+**Java**
 
+````
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        new Pawns.Builder(context)
+                .apiKey("Your api key here")
+                .serviceConfig(
+                        new ServiceConfig(
+                                R.string.service_name,
+                                R.string.service_body,
+                                R.drawable.ic_stat_name,
+                                ServiceNotificationPriority.DEFAULT,
+                                null
+                        )
+                )
+                .serviceType(ServiceType.FOREGROUND)
+                .build();
+    }  
+````
 
 ### How to use ####
 
@@ -91,13 +115,32 @@ Our SDK provides 3 main functionalities
 * Exposing state of service
 
 #### Starting service ####
+
+**Kotlin**
+
 ````
 Pawns.getInstance().startSharing(context)
 ````
+**Java**
+
+````
+Pawns.Companion.getInstance().startSharing(context);
+````
+
 #### Stopping service ####
+
+**Kotlin**
+
 ````
 Pawns.getInstance().stopSharing(context)
 ````
+
+**Java**
+
+````
+Pawns.Companion.getInstance().stopSharing(context);
+````
+
 #### Observing state of service ####
 
 Depending on your technology stack this may vary, but we covered two main use cases, which hopefully will help you out.
@@ -110,13 +153,16 @@ val state = Pawns.getInstance().getServiceState().collectAsState(Dispatchers.Mai
 ````
 #### Xml and Listeners ####
 
-Within your activity or fragment implement our PawnsServiceListener, which will get triggered every time our service state changes.
+Within your activity or fragment implement our PawnsServiceListener, which will get triggered every time our service state changes. Updating UI within onStateChange method might require using **runOnUiThread**, because the state change happens while running on background thread.
 ````
 public interface PawnsServiceListener {
     public fun onStateChange(state: ServiceState)
 }
 ````
 We provide with listener register/unregister methods
+
+**Kotlin**
+
 ````
     override fun onCreate() {
         super.onCreate()
@@ -129,10 +175,35 @@ We provide with listener register/unregister methods
     }  
 ````
 
+**Java**
+
+````
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        Pawns.Companion.getInstance().registerListener(pawnsServiceListener);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Pawns.Companion.getInstance().unregisterListener();
+    } 
+````
+
 The current service state can also be read through its value property
+
+**Kotlin**
+
 ````
     val lastKnownState = Pawns.getInstance().getServiceStateSnapshot()
 ````
+
+**Java**
+
+````
+    ServiceState lastKnownState = Pawns.Companion.getInstance().getServiceStateSnapshot();
+````
+
 ## Foreground service ##
 
 Setup internet sharing service notification channel name (displayed to users in application settings under notification section). Default value is "Sharing service".
