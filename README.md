@@ -45,9 +45,38 @@ implementation'com.github.IPRoyal:android-pawns-sdk:x.y.z'
 
 ## Setup ##
 
+Our SDK comes with **Background** and **Foreground** services. It is up to you to decide which one suits your case in the best way and add it to your project.
+
+AndroidManifest.xml requires you to declare service you want to use.
+
+**Background**
+````
+     <service
+            android:name="com.iproyal.sdk.internal.service.PeerServiceBackground"
+            android:exported="false" />
+````
+
+**Foreground**
+
+**Note:** Applications targeting Android 14 must declare foreground service type. We suggest using "special use", because it is a long term solution, but it could prompt google play store review, where they might ask for a video and explanation how this service is being used in your application.
+For a temporary solution you can use "data sync" type. This type should not prompt google play store review, but it will get **deprecated** later in the future. SDK will check manifest for "data sync" permissions, if it is declared and "special use" is not declared, then service itself will launch by using "data sync" type, although it is your responsibility to declare service in manifest accordingly.
+
+````
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    
+    <service
+        android:name="com.iproyal.sdk.internal.service.PeerServiceForeground"
+        android:exported="false"
+        android:foregroundServiceType="specialUse">
+        <property
+            android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+            android:value="Allows to share internet traffic by modifying device's network settings to be used as a gateway for internet traffic. Device becomes a gateway which allows to send and receive internet traffic." />
+    </service>
+````
+
 Make a few updates in the onCreate method of your app's Application class
 
-Use Pawns.Builder to build and setup SDK for later use in your application. It is a mandatory to provide your API key as it is used to identify your developer account when Internet Sharing service is running.
+Use Pawns.Builder to build and setup SDK for later use in your application. It is a **mandatory to provide your API key** as it is used to identify your developer account when Internet Sharing service is running.
 By default SDK will start service as **FOREGROUND** service. Optionally, you can provide service configuration to modify what exactly foreground service notification will display to user, when sharing service is launched.
 **TIP** *It is recommended to setup service configuration, because it acts as an explanation to the user why your application is running foreground service.*
 
@@ -115,6 +144,11 @@ Our SDK provides 3 main functionalities
 * Exposing state of service
 
 #### Starting service ####
+
+**NOTE:** If using foreground service, default startSharing method creates a notification automatically by using ServiceConfig values
+provided during initialization process. If your application already have another foreground service running you can optionally provide
+startSharing with your current notification object and id, which you pass along when launching your foreground service with startForeground()
+method. In this case our service will attach to existing notification instead of creating a new one.
 
 **Kotlin**
 
