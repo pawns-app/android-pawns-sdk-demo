@@ -40,7 +40,7 @@ allprojects {
 
 Within build.gradle (:app) dependencies section add library
 ````
-implementation'com.github.IPRoyal:android-pawns-sdk:x.y.z'
+implementation 'app.pawns:android-pawns-sdk:x.y.z'
 ````
 
 ## Setup ##

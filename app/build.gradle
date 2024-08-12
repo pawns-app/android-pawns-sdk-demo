@@ -50,7 +50,7 @@ composeCompiler {
 
 
 dependencies {
-    implementation 'com.github.IPRoyal:android-pawns-sdk:1.2.2'
+    implementation 'app.pawns:android-pawns-sdk:1.2.2'
 
     implementation 'androidx.core:core-ktx:1.13.1'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.2'
