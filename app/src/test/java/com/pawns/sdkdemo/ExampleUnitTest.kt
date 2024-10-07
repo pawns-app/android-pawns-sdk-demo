@@ -1,4 +1,4 @@
-package com.iproyal.sdkdemo
+package com.pawns.sdkdemo
 
 import org.junit.Test
 

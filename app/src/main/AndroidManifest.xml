@@ -15,7 +15,7 @@
 
         <!-- Foreground service declaration -->
         <service
-            android:name="com.iproyal.sdk.internal.service.PeerServiceForeground"
+            android:name="com.pawns.sdk.internal.service.PeerServiceForeground"
             android:exported="false"
             android:foregroundServiceType="specialUse">
             <property
@@ -25,11 +25,11 @@
 
         <!-- Background service declaration -->
         <service
-            android:name="com.iproyal.sdk.internal.service.PeerServiceBackground"
+            android:name="com.pawns.sdk.internal.service.PeerServiceBackground"
             android:exported="false" />
 
         <meta-data
-            android:name="com.iproyal.sdk.pawns_service_channel_name"
+            android:name="com.pawns.sdk.pawns_service_channel_name"
             android:value="Demo Internet Sharing" />
 
         <receiver

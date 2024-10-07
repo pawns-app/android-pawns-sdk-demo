@@ -1,9 +1,9 @@
-package com.iproyal.sdkdemo
+package com.pawns.sdkdemo
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.iproyal.sdk.common.sdk.Pawns
+import com.pawns.sdk.common.sdk.Pawns
 
 class BootStartupReceiver: BroadcastReceiver() {
 

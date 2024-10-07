@@ -1,12 +1,12 @@
-package com.iproyal.sdkdemo
+package com.pawns.sdkdemo
 
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.iproyal.sdk.common.dto.ServiceState
-import com.iproyal.sdk.common.listener.PawnsServiceListener
-import com.iproyal.sdk.common.sdk.Pawns
+import com.pawns.sdk.common.dto.ServiceState
+import com.pawns.sdk.common.listener.PawnsServiceListener
+import com.pawns.sdk.common.sdk.Pawns
 
 class XmlActivity : AppCompatActivity(), PawnsServiceListener {
 

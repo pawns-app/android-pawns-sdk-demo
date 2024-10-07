@@ -1,10 +1,10 @@
-package com.iproyal.sdkdemo
+package com.pawns.sdkdemo
 
 import android.app.Application
-import com.iproyal.sdk.common.dto.ServiceConfig
-import com.iproyal.sdk.common.dto.ServiceNotificationPriority
-import com.iproyal.sdk.common.dto.ServiceType
-import com.iproyal.sdk.common.sdk.Pawns
+import com.pawns.sdk.common.dto.ServiceConfig
+import com.pawns.sdk.common.dto.ServiceNotificationPriority
+import com.pawns.sdk.common.dto.ServiceType
+import com.pawns.sdk.common.sdk.Pawns
 
 class App : Application() {
 

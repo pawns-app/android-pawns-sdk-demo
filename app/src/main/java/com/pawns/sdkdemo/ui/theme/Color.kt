@@ -1,4 +1,4 @@
-package com.iproyal.sdkdemo.ui.theme
+package com.pawns.sdkdemo.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

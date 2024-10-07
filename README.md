@@ -1,4 +1,4 @@
-![GitHub Latest Release)](https://img.shields.io/github/v/release/IPRoyal/android-pawns-sdk-demo?logo=github&style=flat&color=5324CE)
+![GitHub Latest Release)](https://img.shields.io/github/v/release/pawns-app/android-pawns-sdk-demo?logo=github&style=flat&color=5324CE)
 
 ![alt text](https://pawns.app/wp-content/uploads/2022/12/pawns-app-dark.svg)
 
@@ -52,7 +52,7 @@ AndroidManifest.xml requires you to declare service you want to use.
 **Background**
 ````
      <service
-            android:name="com.iproyal.sdk.internal.service.PeerServiceBackground"
+            android:name="com.pawns.sdk.internal.service.PeerServiceBackground"
             android:exported="false" />
 ````
 
@@ -65,7 +65,7 @@ For a temporary solution you can use "data sync" type. This type should not prom
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     
     <service
-        android:name="com.iproyal.sdk.internal.service.PeerServiceForeground"
+        android:name="com.pawns.sdk.internal.service.PeerServiceForeground"
         android:exported="false"
         android:foregroundServiceType="specialUse">
         <property
@@ -247,7 +247,7 @@ Setup internet sharing service notification channel name (displayed to users in 
    ...
 
         <meta-data
-            android:name="com.iproyal.sdk.pawns_service_channel_name"
+            android:name="com.pawns.sdk.pawns_service_channel_name"
             android:value="My Internet Sharing" />
 
     </application>
