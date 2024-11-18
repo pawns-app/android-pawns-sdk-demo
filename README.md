@@ -129,11 +129,11 @@ Setup code example:
 #### Service types ####
 
 There are currently two types of service you can run:
-* Background service does not require to display notification, so it is less intrusive to the user. Downside is that application must be 
-active and running, otherwise it will get terminated. Putting phone to sleep will stop service as well.
+* Background service does not require to display notification, so it is less intrusive to the user. Downside is that application must be
+  active and running, otherwise it will get terminated. Putting phone to sleep will stop service as well.
 * Foreground service must display a notification as this service can run independently from application. Meaning that it will continue to run even when
-application is not active and not running. If application is closed there are still some specific cases when service will get terminated after a while, but 
-we will provide tips how to extend time of running later on.
+  application is not active and not running. If application is closed there are still some specific cases when service will get terminated after a while, but
+  we will provide tips how to extend time of running later on.
 
 #### Main Functionality ####
 
@@ -149,6 +149,8 @@ Our SDK provides 3 main functionalities
 provided during initialization process. If your application already have another foreground service running you can optionally provide
 startSharing with your current notification object and id, which you pass along when launching your foreground service with startForeground()
 method. In this case our service will attach to existing notification instead of creating a new one.
+
+It is recommended to use **onCreate()** method for **foreground** service and **onStart()** method for **background** service.
 
 **Kotlin**
 
