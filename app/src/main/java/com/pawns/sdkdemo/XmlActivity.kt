@@ -41,7 +41,7 @@ class XmlActivity : AppCompatActivity(), PawnsServiceListener {
             is ServiceState.Launched.Error -> "Error: ${state.error}"
             ServiceState.Off -> "Off"
             ServiceState.On -> "On"
-            ServiceState.Launched.Running -> "Running"
+            is ServiceState.Launched.Running -> "Running ${state.traffic}"
             ServiceState.Launched.LowBattery -> "Low Battery"
         }
         infoText.text = text

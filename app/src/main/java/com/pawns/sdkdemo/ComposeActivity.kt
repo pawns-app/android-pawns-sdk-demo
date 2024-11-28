@@ -51,7 +51,7 @@ private fun DemoScreen(state: State<ServiceState>) {
                     is ServiceState.Launched.Error -> "Error: ${serviceState.error}"
                     ServiceState.Off -> "Off"
                     ServiceState.On -> "On"
-                    ServiceState.Launched.Running -> "Running"
+                    is ServiceState.Launched.Running -> "Running ${serviceState.traffic}"
                     ServiceState.Launched.LowBattery -> "Low Battery"
                 }
                 Text(
@@ -76,6 +76,6 @@ private fun DemoScreen(state: State<ServiceState>) {
 @Composable
 fun DefaultPreview() {
     PawnsSdkDemoTheme {
-        DemoScreen(MutableStateFlow(ServiceState.Launched.Running).collectAsState())
+        DemoScreen(MutableStateFlow(ServiceState.Launched.Running(null)).collectAsState())
     }
 }
