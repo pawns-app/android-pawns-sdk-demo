@@ -1,6 +1,6 @@
 ![GitHub Latest Release)](https://img.shields.io/github/v/release/pawns-app/android-pawns-sdk-demo?logo=github&style=flat&color=5324CE)
 
-![alt text](https://pawns.app/wp-content/uploads/2022/12/pawns-app-dark.svg)
+![Pawns App](https://pawns.app/app/uploads/2022/12/pawns-app-dark.svg)
 
 # Pawns SDK  #
 -------------
@@ -24,6 +24,7 @@ Contact our representative to get terms and conditions and collect all informati
 ### Summary ###
 
 * Min Sdk 21
+* Target Sdk 35 
 
 ### Information needed ###
 
