@@ -4,7 +4,17 @@
 
 # Pawns SDK  #
 -------------
+
 ## An internet sharing library for Android  ##
+
+
+<div style="border: 2px solid orange; padding: 10px; border-radius: 12px;">
+
+⚠️ <strong>IMPORTANT</strong>
+
+We have added a <strong>consent screen requirement</strong>. Updating to 1.8.0 or above will require you to inform users about our terms and conditions and get their consent. More information is available in <strong>Consent</strong> section.
+
+</div></br>
 
 Contact our representative to get terms and conditions and collect all information needed.
 
@@ -12,6 +22,7 @@ Contact our representative to get terms and conditions and collect all informati
 - [Information needed](#information-needed)
 - [Installation](#installation)
 - [Setup](#setup)
+- [Consent](#consent)
 - [How to use](#how-to-use)
 - [Service types](#service-types)
 - [Main Functionality](#main-functionality)
@@ -24,7 +35,7 @@ Contact our representative to get terms and conditions and collect all informati
 ### Summary ###
 
 * Min Sdk 21
-* Target Sdk 35 
+* Target Sdk 35
 
 ### Information needed ###
 
@@ -46,7 +57,7 @@ implementation 'app.pawns:android-pawns-sdk:x.y.z'
 
 ## Setup ##
 
-Our SDK comes with **Background** and **Foreground** services. It is up to you to decide which one suits your case in the best way and add it to your project.
+This is split into two different sections. This one is main including library setup. Next section is **consent**, as it might differs for different projects, it has its own section. Our SDK comes with **Background** and **Foreground** services. It is up to you to decide which one suits your case in the best way and add it to your project.
 
 AndroidManifest.xml requires you to declare service you want to use.
 
@@ -123,6 +134,127 @@ Setup code example:
                 .serviceType(ServiceType.FOREGROUND)
                 .build();
     }  
+````
+
+## Consent ##
+
+Obtaining user consent is mandatory for any application that wishes to use this library.  
+Without consent, internet sharing will not work.
+
+Users must be informed about the applicable terms and conditions and must be able to either agree to or refuse participation in the internet sharing process.
+Moreover, users must be able to withdraw their consent at any time. Even after user has already given their consent, they should be able to withdraw their consent later on.
+
+
+To make this process as easy as possible, the SDK provides a ready-to-use consent screen that can be displayed to users.  
+Using the provided screen is optional — you may implement your own UI if preferred. The SDK exposes all necessary methods and required text to support a custom implementation.
+
+The full consent text, including hyperlinks to the relevant terms and policies, is provided as a separate resource file.
+
+#### Recommended Consent flow ####
+
+You may choose when to display the consent screen, but it should be shown either:
+- at the start of the application (for example, as part of onboarding), **or**
+- immediately before starting internet sharing.
+
+Before showing the consent screen, always check whether the user has already made a choice.
+
+**Kotlin**
+
+````
+Pawns.getInstance().isConsentGiven()
+````
+
+**Java**
+
+````
+Pawns.Companion.getInstance().isConsentGiven();
+````
+
+If consent has not yet been given, launch the SDK-provided consent screen by retrieving its activity intent.
+
+**Kotlin**
+
+````
+private val consentLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    if (result.resultCode == Activity.RESULT_OK) {
+        Pawns.getInstance().startSharing(context)
+    }
+}
+
+// somewhere (e.g. on button click)
+val consentIntent = Pawns.getInstance().getConsentIntent()
+consentLauncher.launch(consentIntent)
+````
+
+**Java**
+
+````
+private ActivityResultLauncher<Intent> consentLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Pawns.getInstance().startSharing(context);
+                    }
+                }
+        );
+
+// somewhere (e.g. on button click)
+Intent consentIntent = Pawns.getInstance().getConsentIntent();
+consentLauncher.launch(consentIntent);
+````
+
+#### Alternative flow ####
+
+If you do not wish to use the SDK-provided consent screen or require full control over styling and layout, you may provide your own consent UI.  
+In this case, you must display the provided consent text and record the user’s decision using the SDK methods.
+
+The flow remains the same — instead of launching the SDK activity, you show your own screen.
+
+To check whether consent has already been given:
+
+**Kotlin**
+
+````
+Pawns.getInstance().isConsentGiven()
+````
+
+**Java**
+
+````
+Pawns.Companion.getInstance().isConsentGiven();
+````
+
+When the user accepts or refuses participation, report the result to the SDK:
+
+**Kotlin**
+
+````
+Pawns.getInstance().setConsentGiven(true/false)
+````
+
+**Java**
+
+````
+Pawns.Companion.getInstance().setConsentGiven(true/false);
+````
+
+#### Withdrawing consent ####
+
+Withdrawing the consent should be allowed at any time. You should provide a way for users to withdraw their consent somewhere within your application.
+It can be done either in **Settings** or in any other suitable location. We recommend using either a button or a switch to allow users to withdraw their consent.
+
+This method can be used to record the user’s decision:
+
+**Kotlin**
+
+````
+Pawns.getInstance().setConsentGiven(true/false)
+````
+
+**Java**
+
+````
+Pawns.Companion.getInstance().setConsentGiven(true/false);
 ````
 
 ### How to use ####
