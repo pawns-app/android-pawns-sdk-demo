@@ -49,7 +49,7 @@ composeCompiler {
 }
 
 dependencies {
-    implementation 'app.pawns:android-pawns-sdk:1.8.0'
+    implementation 'app.pawns:android-pawns-sdk:1.8.1'
 
     implementation 'androidx.core:core-ktx:1.17.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.10.0'
